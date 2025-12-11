@@ -5,6 +5,7 @@ import Boards from "./pages/Boards";
 import BoardDetails from "./pages/BoardDetails";
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import UserRoute from "./routes/UserRoute";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
 
       <main style={{ padding: "0 24px" }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<UserRoute><Home/></UserRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/boards" element={
             <ProtectedRoute>

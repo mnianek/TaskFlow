@@ -71,9 +71,17 @@ export default function BoardDetails() {
     setNewTaskTitle("");
   }
   function deleteTask(taskId: string) {
-    const updated = tasks.filter((task) => task.id !== taskId);
-    persistTasks(updated);
+  const confirmDelete = window.confirm(
+    "Czy na pewno chcesz usunąć to zadanie?"
+  );
+
+  if (!confirmDelete) {
+    return; 
   }
+
+  const updated = tasks.filter((task) => task.id !== taskId);
+  persistTasks(updated);
+}
 
   function editTask(taskId: string) {
     const taskToEdit = tasks.find((task) => task.id === taskId);
@@ -176,13 +184,13 @@ export default function BoardDetails() {
                     onClick={() => moveTask(task.id, "in-progress")}
                     className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200"
                   >
-                    → In progress
+                    → W trakcie
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "done")}
                     className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200"
                   >
-                    ✓ Done
+                    ✓ Zrobione
                   </button>
                 </div>
               </div>
@@ -220,13 +228,13 @@ export default function BoardDetails() {
                     onClick={() => moveTask(task.id, "todo")}
                     className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200"
                   >
-                    ← To do
+                    ← Do zrobienia
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "done")}
                     className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200"
                   >
-                    ✓ Done
+                    ✓ Zrobione
                   </button>
                 </div>
               </div>
@@ -264,13 +272,13 @@ export default function BoardDetails() {
                     onClick={() => moveTask(task.id, "in-progress")}
                     className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200"
                   >
-                    ← In progress
+                    ← W trakcie
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "todo")}
                     className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200"
                   >
-                    ↺ To do
+                    ↺ Do zrobienia
                   </button>
                 </div>
               </div>

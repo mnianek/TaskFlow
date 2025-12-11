@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
@@ -7,14 +7,15 @@ export default function Navigation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [theme, setTheme] = useState<Theme>("light");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // 🔹 Sprawdzamy TYLKO, czy user jest zalogowany
+  // Sprawdzamy, czy user jest zalogowany
   useEffect(() => {
     const user =
       localStorage.getItem("taskflow_user") ??
       localStorage.getItem("taskflow-username");
     setIsLoggedIn(!!user);
-  }, []);
+  }, [location.pathname]);
 
   function handleLogout() {
     localStorage.removeItem("taskflow_user");
@@ -23,7 +24,7 @@ export default function Navigation() {
     navigate("/");
   }
 
-  // 🔹 JEDYNE miejsce, gdzie ruszamy klasę "dark" na <html>
+  // Jedyne miejsce, gdzie ruszamy klasę "dark" na <html>
   function toggleTheme() {
     const next: Theme = theme === "light" ? "dark" : "light";
     setTheme(next);
@@ -37,7 +38,7 @@ export default function Navigation() {
   }
 
   return (
-    <header className="flex justify-between items-center p-4 border-b border-gray-300 mb-6 bg-white dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+    <header className="flex justify-between items-center p-4 mb-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 dark:text-gray-100 shadow-sm sticky top-0 z-50">
       <Link
         to="/"
         className="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition"
@@ -45,11 +46,11 @@ export default function Navigation() {
         TaskFlow
       </Link>
 
-      <nav className="flex items-center gap-4 text-gray-700 dark:text-gray-200 font-medium">
+      <nav className="flex items-center gap-6 text-gray-700 dark:text-gray-200 font-medium">
         {/* Przycisk zmiany motywu */}
         <button
           onClick={toggleTheme}
-          className="text-sm px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          className="text-sm px-4 py-1.5 rounded-full border border-gray-300 dark:border-gray-600 bg-white/60 dark:bg-gray-800/60 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition flex items-center gap-2"
         >
           {theme === "light" ? "🌙 Dark" : "☀️ Light"}
         </button>
@@ -57,26 +58,20 @@ export default function Navigation() {
         {/* Logowanie / Boards + Logout */}
         {!isLoggedIn && (
           <Link
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            className="px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 transition"
             to="/login"
           >
-            Login
+            Logowanie
           </Link>
         )}
 
         {isLoggedIn && (
           <>
-            <Link
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-              to="/boards"
-            >
-              Boards
-            </Link>
             <button
               onClick={handleLogout}
-              className="hover:text-red-600 dark:hover:text-red-400 transition"
+              className="px-3 py-1.5 rounded-md hover:bg-red-100 dark:hover:bg-red-900/40 hover:text-red-600 dark:hover:text-red-400 transition"
             >
-              Logout
+              Wyloguj
             </button>
           </>
         )}
