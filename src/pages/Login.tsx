@@ -19,8 +19,8 @@ export default function Login() {
   }
   return (
     <div className="flex justify-center items-center mt-10">
-      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6 border border-gray-100">
-        <h1 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+        <h1 className="text-2xl font-bold mb-4 text-gray-800 text-center dark:text-gray-100">
           Logowanie
         </h1>
 
@@ -28,7 +28,7 @@ export default function Login() {
           <div>
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-100"
             >
               Nazwa użytkownika
             </label>

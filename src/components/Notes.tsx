@@ -44,11 +44,11 @@ export default function Notes() {
 
             {/* Lista notatek */}
             {!loading && !error && notes.length > 0 && (
-                <div className="space-y-3">
+                <div className="space-y-3 " >
                     {notes.map((note) => (
                         <div
                             key={note.id}
-                            className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm"
+                            className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm"
                         >
                             <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                                 {note.title}

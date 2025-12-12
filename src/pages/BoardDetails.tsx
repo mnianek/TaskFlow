@@ -71,17 +71,17 @@ export default function BoardDetails() {
     setNewTaskTitle("");
   }
   function deleteTask(taskId: string) {
-  const confirmDelete = window.confirm(
-    "Czy na pewno chcesz usunąć to zadanie?"
-  );
+    const confirmDelete = window.confirm(
+      "Czy na pewno chcesz usunąć to zadanie?"
+    );
 
-  if (!confirmDelete) {
-    return; 
+    if (!confirmDelete) {
+      return;
+    }
+
+    const updated = tasks.filter((task) => task.id !== taskId);
+    persistTasks(updated);
   }
-
-  const updated = tasks.filter((task) => task.id !== taskId);
-  persistTasks(updated);
-}
 
   function editTask(taskId: string) {
     const taskToEdit = tasks.find((task) => task.id === taskId);
@@ -119,13 +119,10 @@ export default function BoardDetails() {
   }
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-4 space-y-6 ">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{board.name}</h1>
-          <p className="text-sm text-gray-500">
-            Tablica Kanban z zadaniami w kolumnach.
-          </p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{board.name}</h1>
         </div>
         <Link
           to="/boards"
@@ -152,7 +149,7 @@ export default function BoardDetails() {
         </button>
       </div>
 
-      {/* Kolumny Kanban */}
+      {/* Kolumny */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Do zrobienia */}
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 dark:bg-gray-800 dark:border-gray-700">
@@ -164,12 +161,13 @@ export default function BoardDetails() {
             {todoTasks.map((task) => (
               <div
                 key={task.id}
-                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center"
+                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center dark:bg-gray-900 "
               >
                 <span>{task.title}</span>
-                <button
+                <div className="flex gap-1">
+                  <button
                   onClick={() => editTask(task.id)}
-                  className="text-xs px-2 py-1 rounded bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800"
+                  className="text-xs px-2 py-1 rounded  bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800"
                 >
                   Edytuj
                 </button>
@@ -182,16 +180,17 @@ export default function BoardDetails() {
                 <div className="flex gap-1">
                   <button
                     onClick={() => moveTask(task.id, "in-progress")}
-                    className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200"
+                    className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900"
                   >
                     → W trakcie
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "done")}
-                    className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200"
+                    className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200 dark:bg-green-900"
                   >
                     ✓ Zrobione
                   </button>
+                </div>
                 </div>
               </div>
             ))}
@@ -208,7 +207,7 @@ export default function BoardDetails() {
             {inProgressTasks.map((task) => (
               <div
                 key={task.id}
-                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center"
+                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center dark:bg-gray-900"
               >
                 <span>{task.title}</span>
                 <div className="flex gap-1">
@@ -226,13 +225,13 @@ export default function BoardDetails() {
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "todo")}
-                    className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                    className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
                   >
                     ← Do zrobienia
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "done")}
-                    className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200"
+                    className="text-xs px-2 py-1 rounded bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800"
                   >
                     ✓ Zrobione
                   </button>
@@ -252,7 +251,7 @@ export default function BoardDetails() {
             {doneTasks.map((task) => (
               <div
                 key={task.id}
-                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center"
+                className="bg-white border rounded-md p-2 text-sm flex justify-between items-center dark:bg-gray-900"
               >
                 <span>{task.title}</span>
                 <div className="flex gap-1">
@@ -270,13 +269,13 @@ export default function BoardDetails() {
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "in-progress")}
-                    className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200"
+                    className="text-xs px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900"
                   >
                     ← W trakcie
                   </button>
                   <button
                     onClick={() => moveTask(task.id, "todo")}
-                    className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                    className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 "
                   >
                     ↺ Do zrobienia
                   </button>

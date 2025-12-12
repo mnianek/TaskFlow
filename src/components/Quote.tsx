@@ -52,7 +52,7 @@ export default function Quote() {
         }
     }, [quote]);
     return (
-        <div className="mt-8 max-w-xl mx-auto p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="max-w-xl mx-auto p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
 
             
 
