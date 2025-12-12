@@ -24,7 +24,7 @@ export default function Navigation() {
     navigate("/");
   }
 
-  // Jedyne miejsce, gdzie ruszamy klasę "dark" na <html>
+  // Jedyne miejsce, gdzie zarządzamy motywem
   function toggleTheme() {
     const next: Theme = theme === "light" ? "dark" : "light";
     setTheme(next);

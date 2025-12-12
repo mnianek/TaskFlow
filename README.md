@@ -148,6 +148,14 @@ Rozwiązanie: Wyłączyłem opcję Verifed Commits w ustawieniach projektu Verce
 
 ## Dokumentacja API
 
+Aplikacja korzysta z mockapi.io
+API służy do przechowywania i zarządzania notatkami.
+
+### Endpointy
+
+- GET `/notes` – pobiera listę notatek
+- POST `/notes` – dodaje nową notatkę
+
 ## Component Documentation
 
 Poniżej przedstawiono dokumentację najważniejszych komponentów aplikacji TaskFlow.
@@ -192,8 +200,8 @@ Celem projektu TaskFlow było stworzenie prostej aplikacji do zarządzania zadan
 
 ### Decyzje
 - React – komponentowa architektura UI
-	- TypeScript - typowanie i mniejsza liczba błędów
-	•	Tailwind CSS – szybkie i spójne stylowanie
+- TypeScript - typowanie i mniejsza liczba błędów
+- Tailwind CSS – szybkie i spójne stylowanie
 
 
 ## Contribution Guide

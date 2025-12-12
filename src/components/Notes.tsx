@@ -35,7 +35,6 @@ export default function Notes() {
 
     return (
         <div className="mt-10 max-w-3xl mx-auto">
-            {/* <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Notatki</h1> */}
             {/* Ładowanie */}
             {loading && <p className="text-gray-600 dark:text-gray-300">Ładowanie notatek...</p>}
 

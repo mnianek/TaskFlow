@@ -6,8 +6,6 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  // Sprawdzamy, czy użytkownik jest zalogowany na podstawie localStorage.
-  // Obsługujemy oba możliwe klucze, żeby nie było problemu, jeśli gdzieś użyto innej nazwy.
   const storedUser =
     localStorage.getItem("taskflow_user") ??
     localStorage.getItem("taskflow-username");
@@ -19,6 +17,6 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     return <Navigate to="/login" replace />;
   }
 
-  // Jeśli jest zalogowany, normalnie renderujemy dzieci (czyli stronę chronioną)
+  // Jeśli jest zalogowany, normalnie renderujemy children
   return <>{children}</>;
 }
